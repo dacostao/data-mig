@@ -18,3 +18,15 @@ class Load():
             print(f"Error occurred while loading data: {str(e)}")
         finally:
             session.close()
+
+    def load_hired_employee(self, data):
+        try:
+            for row in data:
+                hired_employee = HiredEmployee(**row)
+                session.add(hired_employee)
+            session.commit()
+        except Exception as e:
+            session.rollback()
+            print(f"Error occurred while loading data: {str(e)}")
+        finally:
+            session.close()
