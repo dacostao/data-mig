@@ -1,4 +1,5 @@
 import unittest
+import datetime
 from sqlalchemy import inspect
 from app.models.DeclarativeBase import engine, Session
 from app.models.Department import Department
@@ -31,8 +32,26 @@ class TestLoad(unittest.TestCase):
 
         self.load.load_deparment(data)
 
-        query = self.session.query(Department).order_by(Department.id.desc())
+        query = self.session.query(Department).order_by(Department.id.asc())
         actual_data = [{'id': d.id, 'department': d.department} for d in query.all()]
-        actual_data.reverse()   
         self.assertEqual(actual_data, data)
 
+    def test_load_hired_employee_data(self):
+        data = [
+            {'id': 4535,'name': 'Marcelo Gonzalez', 'datetime': datetime.datetime(2021, 7, 27, 16, 2, 8), 'department_id': 1, 'job_id': 2},
+            {'id': 4572,'name': 'Lidia Mendez', 'datetime': datetime.datetime(2021, 7, 27, 19, 4, 9), 'department_id': 1, 'job_id': 2}
+        ]
+
+        self.load.load_hired_employee(data)
+
+        query = self.session.query(HiredEmployee).order_by(HiredEmployee.id.asc())
+        actual_data = [{'id': h.id, 
+                        'name': h.name, 
+                        'datetime': h.datetime, 
+                        'department_id':h.department_id, 
+                        'job_id': h.job_id} 
+                        for h in query.all()]
+        
+        data = sorted(data, key=lambda h: h['id'])
+        actual_data = sorted(actual_data, key=lambda h: h['id'])
+        self.assertEqual(actual_data, data)
