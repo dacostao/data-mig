@@ -13,7 +13,7 @@ class TestTransform(unittest.TestCase):
             {'id': 4572, 'name': 'Lidia Mendez', 'datetime': '2021-07-27T19:04:09Z', 'department_id': 1, 'job_id': 2}
         ]
         actual_data = Transform.transform_hired_employees(input_data)
-        self.assertEquals(actual_data,expected_data)
+        self.assertEqual(actual_data,expected_data)
 
     def test_transform_departments(self):
         input_data = [
@@ -27,7 +27,7 @@ class TestTransform(unittest.TestCase):
             {'id': 3, 'department': 'Staff'}
         ]
         actual_data = Transform.transform_departments(input_data)
-        self.assertEquals(actual_data, expected_data)
+        self.assertEqual(actual_data, expected_data)
 
     def test_transform_jobs(self):
         input_data = [
@@ -41,4 +41,4 @@ class TestTransform(unittest.TestCase):
             {'id': 3, 'job': 'Analyst'}
         ]
         actual_data = Transform.transform_jobs(input_data)
-        self.assertEquals(actual_data, expected_data)
+        self.assertEqual(actual_data, expected_data)
