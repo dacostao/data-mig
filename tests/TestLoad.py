@@ -55,3 +55,16 @@ class TestLoad(unittest.TestCase):
         data = sorted(data, key=lambda h: h['id'])
         actual_data = sorted(actual_data, key=lambda h: h['id'])
         self.assertEqual(actual_data, data)
+
+    def test_load_job_data(self):
+        data = [
+            {'id': 1, 'job': 'Recruiter'},
+            {'id': 2, 'job': 'Manager'},
+            {'id': 3, 'job': 'Analyst'}
+        ]
+
+        self.load.load_job(data)
+
+        query = self.session.query(Job).order_by(Job.id.asc())
+        actual_data = [{'id': j.id, 'job': j.job} for j in query.all()]
+        self.assertEqual(actual_data, data)
