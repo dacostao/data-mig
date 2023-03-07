@@ -38,8 +38,8 @@ class TestLoad(unittest.TestCase):
 
     def test_load_hired_employee_data(self):
         data = [
-            {'id': 4535,'name': 'Marcelo Gonzalez', 'datetime': datetime.datetime(2021, 7, 27, 16, 2, 8), 'department_id': 1, 'job_id': 2},
-            {'id': 4572,'name': 'Lidia Mendez', 'datetime': datetime.datetime(2021, 7, 27, 19, 4, 9), 'department_id': 1, 'job_id': 2}
+            {'id': 4535,'name': 'Marcelo Gonzalez', 'datetime': "2021-07-27 16:02:08'", 'department_id': 1, 'job_id': 2},
+            {'id': 4572,'name': 'Lidia Mendez', 'datetime': "2021-07-27 19:04:09", 'department_id': 1, 'job_id': 2}
         ]
 
         self.load.load_hired_employee(data)
