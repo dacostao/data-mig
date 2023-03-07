@@ -30,3 +30,15 @@ class Load():
             print(f"Error occurred while loading data: {str(e)}")
         finally:
             session.close()
+
+    def load_job(self, data):
+        try:
+            for row in data:
+                job = Job(**row)
+                session.add(job)
+            session.commit()
+        except Exception as e:
+            session.rollback()
+            print(f"Error occurred while loading data: {str(e)}")
+        finally:
+            session.close()
