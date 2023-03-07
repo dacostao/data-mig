@@ -9,8 +9,8 @@ class HiredEmployee(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String(80), nullable=False)
     datetime = Column(DateTime, nullable=False)
-    department_id = Column(Integer, ForeignKey('department.id'), nullable=False)
-    job_id = Column(Integer, ForeignKey('job.id'), nullable=False)
+    department_id = Column(Integer, ForeignKey('Department.id'), nullable=False)
+    job_id = Column(Integer, ForeignKey('Job.id'), nullable=False)
 
     department = relationship('Department', backref='hired_employees', lazy=True)
     job = relationship('Job', backref='hired_employees', lazy=True)
